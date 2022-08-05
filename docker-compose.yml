@@ -8,7 +8,7 @@ networks:
 services:
 
   app:
-    image: ricardopaes/action-s3-upload:latest
+    image: ghcr.io/ricardoapaes/action-s3-upload:latest
     build:
       context: .
       args:
