@@ -42,7 +42,7 @@ class UploadS3Command extends Command {
 			throw new InvalidArgumentException("File '{$src}' cannot be read.");
 		}
 
-		$filename = $input->getOption('filename') ?? basename($src);
+		$filename = trim($input->getOption('filename') ?? basename($src));
 
 		$io->title('S3 Upload');
 
@@ -52,7 +52,8 @@ class UploadS3Command extends Command {
 		$io->text('Reading file content...');
 		$content = file_get_contents($src);
 
-		$io->text('Mime-type is: ' . $mimeType);
+		$io->text('Filename is: "' . $filename . '".');
+		$io->text('Mimetype is: ' . $mimeType);
 
 		if ($metaDatas) {
 			$io->text('Metadata is: ' . http_build_query($metaDatas, '', ', '));
@@ -102,7 +103,7 @@ class UploadS3Command extends Command {
 		}
 
 		return [
-			$itemExplode[0] => $itemExplode[1],
+			trim($itemExplode[0]) => trim($itemExplode[1]),
 		];
 	}
 }
