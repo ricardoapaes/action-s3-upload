@@ -1,0 +1,23 @@
+{
+    "repositories": [
+        {"type": "composer", "url": "https://composer.likesistemas.com.br/"}
+    ],
+    "require": {
+        "like/aws": "^1.1",
+        "symfony/console": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "RicardoPaes\\ActionS3Upload\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.0",
+        "phpstan/phpstan": "^1.8"
+    },
+    "scripts": {
+        "fix": "php-cs-fixer fix",
+        "fix:ci": "php-cs-fixer fix --dry-run --stop-on-violation",
+        "analyse": "phpstan analyse"
+    }
+}

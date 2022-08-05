@@ -1,0 +1,4 @@
+.env
+upload/
+vendor/
+.php-cs-fixer.cache

@@ -1,0 +1,17 @@
+{
+	"name": "action-s3-upload",
+	"dockerComposeFile": [
+		"../docker-compose.dev.yml"
+	],
+	"service": "php",
+  	"shutdownAction": "none",
+	"workspaceFolder": "/var/www/public/",
+	"extensions": [
+		"bmewburn.vscode-intelephense-client",
+		"eamodio.gitlens",
+		"mhutchie.git-graph",
+		"junstyle.php-cs-fixer",
+		"janbn.git-last-commit-message",
+		"kasik96.latte"
+	]
+}
