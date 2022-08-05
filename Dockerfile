@@ -20,4 +20,4 @@ COPY cli .
 RUN chmod +x cli
 RUN php cli
 
-ENTRYPOINT [ "php", "cli" ]
+ENTRYPOINT [ "php", "/application/cli" ]

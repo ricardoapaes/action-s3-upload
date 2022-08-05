@@ -102,7 +102,7 @@ class UploadS3Command extends Command {
 		}
 
 		return [
-			$itemExplode[0] => $itemExplode[1],
+			trim($itemExplode[0]) => trim($itemExplode[1]),
 		];
 	}
 }
