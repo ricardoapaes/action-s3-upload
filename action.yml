@@ -1,7 +1,25 @@
-# action.yml
 name: 'Upload file to S3'
 description: 'Upload file to S3 with metadata'
 author: ricardoapaes
+inputs:
+  bucket:
+    description: 'Name of bucket'
+    required: true
+  src:
+    description: 'File path to upload'
+    required: true
+  filename:
+    description: 'File name within the bucket'
+    required: false
+  metadata:
+    description: 'Metadata of the file to be uploaded.'
+    required: false
 runs:
   using: 'docker'
   image: 'ghcr.io/ricardoapaes/action-s3-upload:latest'
+  args:
+    - upload
+    - -f ${{ inputs.filename }}
+    - -d ${{ inputs.metadata }}
+    - ${{ inputs.bucket }}
+    - ${{ inputs.src }}

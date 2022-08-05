@@ -47,7 +47,7 @@ class UploadS3Command extends Command {
 		$io->title('S3 Upload');
 
 		$mimeType = $input->getOption('mimeType');
-		$metaDatas = $this->readMetadata($input->getOption('metaData'));
+		$metaDatas = $this->readMetadatas($input->getOption('metaData'));
 
 		$io->text('Reading file content...');
 		$content = file_get_contents($src);
@@ -71,16 +71,38 @@ class UploadS3Command extends Command {
 		return Command::SUCCESS;
 	}
 
-	private function readMetadata(array $rec):array {
+	private function readMetadatas(array $rec):array {
 		return array_reduce($rec, function (array $metaDatas, string $item) {
-			$itemExplode = explode('=', $item);
-			if (count($itemExplode) !== 2) {
+			$itemMultipleExplode = explode(',', $item);
+			if (count($itemMultipleExplode) > 1) {
+				$metaDatas += $this->readMetadata($itemMultipleExplode);
 				return $metaDatas;
 			}
 
-			$metaDatas[ $itemExplode[0] ] = $itemExplode[1];
-
+			$metaDatas += $this->readMetadata($item);
+			
 			return $metaDatas;
 		}, []);
+	}
+
+	private function readMetadata($metadata) {
+		if (is_array($metadata)) {
+			$metas = [];
+
+			foreach ($metadata as $meta) {
+				$metas += $this->readMetadata($meta);
+			}
+
+			return $metas;
+		}
+
+		$itemExplode = explode('=', $metadata);
+		if (count($itemExplode) !== 2) {
+			return [];
+		}
+
+		return [
+			$itemExplode[0] => $itemExplode[1],
+		];
 	}
 }
