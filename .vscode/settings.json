@@ -1,0 +1,9 @@
+{
+    "files.encoding": "utf8",
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer"
+    },
+    "php-cs-fixer.onsave": true,
+    "php-cs-fixer.autoFixByBracket": true,
+    "php-cs-fixer.config": ".php-cs-fixer.php"
+}

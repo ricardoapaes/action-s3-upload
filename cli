@@ -1,0 +1,13 @@
+#!php
+<?php
+
+use RicardoPaes\ActionS3Upload\App;
+
+if (php_sapi_name() !== 'cli') {
+	exit;
+}
+
+require __DIR__ . '/./vendor/autoload.php';
+
+$app = new App();
+$app->run();

@@ -1,0 +1,19 @@
+version: '3.7'
+
+networks:
+  github:
+    name: github
+    driver: bridge
+
+services:
+
+  php:
+    image: likesistemas/php-dev:${PHP_VERSION:-80}
+    networks:
+      - github
+    environment:
+      - GITHUB_TOKEN=$GITHUB_TOKEN
+      - AWS_KEY=$AWS_KEY
+      - AWS_SECRET=$AWS_SECRET
+    volumes: 
+      - ./:/var/www/public/

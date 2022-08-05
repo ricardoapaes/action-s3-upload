@@ -1,0 +1,7 @@
+# action.yml
+name: 'Upload file to S3'
+description: 'Upload file to S3 with metadata'
+author: ricardoapaes
+runs:
+  using: 'docker'
+  image: 'ghcr.io/ricardoapaes/action-s3-upload:latest'

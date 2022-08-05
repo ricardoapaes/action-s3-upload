@@ -1,0 +1,22 @@
+version: '3.7'
+
+networks:
+  github:
+    name: github
+    driver: bridge
+
+services:
+
+  app:
+    image: ghcr.io/ricardoapaes/action-s3-upload:latest
+    build:
+      context: .
+      args:
+        - GITHUB_TOKEN=$GITHUB_TOKEN
+    networks:
+      - github
+    environment:      
+      - AWS_KEY=$AWS_KEY
+      - AWS_SECRET=$AWS_SECRET
+    volumes:
+      - ./upload/:/application/upload/
