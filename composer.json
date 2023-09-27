@@ -1,4 +1,7 @@
 {
+    "name": "ricardoapaes/action-s3",
+    "type": "project",
+    "description": "Download/upload files from s3.",
     "repositories": [
         {"type": "composer", "url": "https://composer.likesistemas.com.br/"}
     ],
@@ -14,11 +17,13 @@
     "require-dev": {
         "symfony/var-dumper": "^6.0",
         "phpstan/phpstan": "^1.8",
-        "friendsofphp/php-cs-fixer": "^3.30"
+        "friendsofphp/php-cs-fixer": "^3.30",
+        "clue/phar-composer": "^1.4"
     },
     "scripts": {
         "fix": "php-cs-fixer fix",
         "fix:ci": "php-cs-fixer fix --dry-run --stop-on-violation",
         "analyse": "phpstan analyse"
-    }
+    },
+    "bin": ["bin/action-s3"]
 }

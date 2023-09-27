@@ -1,0 +1,29 @@
+name: 'Download file from S3'
+description: 'Download file from S3'
+author: ricardoapaes
+branding:
+  icon: 'upload'
+  color: 'green'
+inputs:
+  bucket:
+    description: 'Name of bucket.'
+    required: true
+  src:
+    description: 'File path to upload.'
+    required: true
+  dest:
+    description: 'Location to save file.'
+    required: true
+  region:
+    description: 'Region where the bucket is located.'
+    required: false
+    default: 'us-east-1'
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/ricardoapaes/action-s3-upload:latest'
+  args:
+    - download
+    - -r ${{ inputs.region }}
+    - ${{ inputs.bucket }}
+    - ${{ inputs.src }}
+    - ${{ inputs.dest }}

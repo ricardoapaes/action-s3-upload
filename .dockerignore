@@ -1,0 +1,17 @@
+upload/
+.devcontainer/
+.vscode/
+docker-compose.yml
+docker-compose.dev.yml
+Dockerfile
+phpstan.neon
+README.md
+LICENSE
+.php-cs-fixer.php
+.php-cs-fixer.cache
+.gitattributes
+.gitignore
+.env
+.env.example
+download
+download-shell

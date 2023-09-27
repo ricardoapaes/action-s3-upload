@@ -8,5 +8,6 @@ class App extends Application {
 	public function __construct() {
 		parent::__construct('s3-upload');
 		$this->add(new UploadS3Command());
+		$this->add(new DownloadS3Command());
 	}
 }

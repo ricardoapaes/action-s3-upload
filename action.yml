@@ -1,6 +1,9 @@
 name: 'Upload file to S3'
 description: 'Upload file to S3 with metadata'
 author: ricardoapaes
+branding:
+  icon: 'upload'
+  color: 'green'
 inputs:
   bucket:
     description: 'Name of bucket'
