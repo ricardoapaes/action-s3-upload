@@ -29,11 +29,12 @@ class UploadS3Command extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output): int {
 		$io = new SymfonyStyle($input, $output);
 
+		$region = trim($input->getOption('region')) ?? Aws::REGION_NORTH_VIRGINIA;
 		$s3 = S3::get(
 			$input->getOption('awsKey'),
 			$input->getOption('awsSecret'),
 			$input->getArgument('bucket'),
-			$input->getOption('region') ?? Aws::REGION_NORTH_VIRGINIA
+			$region
 		);
 
 		$src = $input->getArgument('src');
@@ -55,6 +56,7 @@ class UploadS3Command extends Command {
 		$io->text('Reading file content...');
 		$content = file_get_contents($src);
 
+		$io->text('Region: ' . $region);
 		$io->text('Filename is: "' . $filename . '".');
 		$io->text('Mimetype is: ' . $mimeType);
 
