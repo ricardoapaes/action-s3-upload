@@ -14,6 +14,7 @@ inputs:
   metadata:
     description: 'Metadata of the file to be uploaded.'
     required: false
+    default: 'author=like'
   region:
     description: 'Region where the bucket is located.'
     required: false

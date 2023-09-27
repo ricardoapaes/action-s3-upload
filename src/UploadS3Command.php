@@ -22,7 +22,7 @@ class UploadS3Command extends Command {
 		$this->addOption('awsSecret', 's', InputOption::VALUE_OPTIONAL, 'AWS secret for authentication.', getenv('AWS_SECRET'));
 		$this->addOption('mimeType', 'm', InputOption::VALUE_OPTIONAL, 'Mimetype of the file to be uploaded.', 'application/x-msdownload');
 		$this->addOption('metaData', 'd', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'Metadata of the file to be uploaded.');
-		$this->addOption('region', 'r', InputOption::VALUE_OPTIONAL, 'Metadata of the file to be uploaded.', Aws::REGION_NORTH_VIRGINIA);
+		$this->addOption('region', 'r', InputOption::VALUE_OPTIONAL, 'Region where the bucket is located.', Aws::REGION_NORTH_VIRGINIA);
 		$this->addOption('filename', 'f', InputOption::VALUE_OPTIONAL, 'File name within the bucket.');
 	}
 
@@ -33,7 +33,7 @@ class UploadS3Command extends Command {
 			$input->getOption('awsKey'),
 			$input->getOption('awsSecret'),
 			$input->getArgument('bucket'),
-			$input->getOption('region')
+			$input->getOption('region') ?? Aws::REGION_NORTH_VIRGINIA
 		);
 
 		$src = $input->getArgument('src');
