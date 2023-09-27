@@ -22,9 +22,9 @@ $rules = [
 	'ternary_operator_spaces' => true,
 	'trailing_comma_in_multiline' => true,
 	'trim_array_spaces' => true,
-	'braces' => [
-		'allow_single_line_closure' => true,
-		'position_after_functions_and_oop_constructs' => 'same',
+	'curly_braces_position' => [
+		'classes_opening_brace' => 'same_line',
+		'functions_opening_brace' => 'same_line',
 	],
 ];
 

@@ -3,6 +3,7 @@
 namespace RicardoPaes\ActionS3Upload;
 
 use InvalidArgumentException;
+use Like\Aws\Aws;
 use Like\Aws\S3\S3;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -21,6 +22,7 @@ class UploadS3Command extends Command {
 		$this->addOption('awsSecret', 's', InputOption::VALUE_OPTIONAL, 'AWS secret for authentication.', getenv('AWS_SECRET'));
 		$this->addOption('mimeType', 'm', InputOption::VALUE_OPTIONAL, 'Mimetype of the file to be uploaded.', 'application/x-msdownload');
 		$this->addOption('metaData', 'd', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'Metadata of the file to be uploaded.');
+		$this->addOption('region', 'r', InputOption::VALUE_OPTIONAL, 'Metadata of the file to be uploaded.', Aws::REGION_NORTH_VIRGINIA);
 		$this->addOption('filename', 'f', InputOption::VALUE_OPTIONAL, 'File name within the bucket.');
 	}
 
@@ -30,7 +32,8 @@ class UploadS3Command extends Command {
 		$s3 = S3::get(
 			$input->getOption('awsKey'),
 			$input->getOption('awsSecret'),
-			$input->getArgument('bucket')
+			$input->getArgument('bucket'),
+			$input->getOption('region')
 		);
 
 		$src = $input->getArgument('src');

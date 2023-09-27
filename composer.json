@@ -13,7 +13,8 @@
     },
     "require-dev": {
         "symfony/var-dumper": "^6.0",
-        "phpstan/phpstan": "^1.8"
+        "phpstan/phpstan": "^1.8",
+        "friendsofphp/php-cs-fixer": "^3.30"
     },
     "scripts": {
         "fix": "php-cs-fixer fix",
