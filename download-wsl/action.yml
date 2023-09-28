@@ -1,0 +1,36 @@
+name: 'Download file from S3 using WSL'
+description: 'Download file from S3 using WSL'
+author: ricardoapaes
+branding:
+  icon: 'upload'
+  color: 'green'
+inputs:
+  bucket:
+    description: 'Name of bucket.'
+    required: true
+  src:
+    description: 'File path to upload.'
+    required: true
+  path:
+    description: 'Path to save file. Ex.: /mnt/c/'
+    required: true
+  dest:
+    description: 'Location to save file.'
+    required: true
+  awsKey:
+    description: 'AWS key for authentication.'
+    required: true
+  awsSecret:
+    description: 'AWS secret for authentication.'
+    required: true
+  region:
+    description: 'Region where the bucket is located.'
+    required: false
+    default: 'us-east-1'
+runs:
+  using: 'composite'
+  steps:
+    - name: Download file
+      shell: pwsh
+      run: |
+        wsl docker run -e AWS_KEY=${{ inputs.awsKey }} -e AWS_SECRET=${{ inputs.awsSecret }} -v ${{ inputs.path }}:/download/ ghcr.io/ricardoapaes/action-s3-upload:latest download -r ${{ inputs.region }} ${{ inputs.bucket }} ${{ inputs.src }} /download/${{ inputs.dest }}
