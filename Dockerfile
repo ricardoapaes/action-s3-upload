@@ -1,4 +1,4 @@
-FROM likesistemas/php-dev:80 as build
+FROM likesistemas/php-dev:80 AS build
 WORKDIR /var/www/public/
 COPY composer.json composer.lock ./
 ARG GITHUB_TOKEN
@@ -7,7 +7,7 @@ RUN composer install --no-dev --no-scripts --no-autoloader
 COPY . .
 RUN composer dump-autoload
 
-FROM build as phar
+FROM build AS phar
 RUN curl -JOL https://clue.engineering/phar-composer-latest.phar
 RUN php -d phar.readonly=off phar-composer-*.phar build
 RUN chmod +x action-s3.phar
@@ -23,4 +23,4 @@ WORKDIR /application/
 COPY --from=phar /var/www/public/action-s3.phar action-s3
 RUN chmod +x action-s3 && php action-s3
 
-ENTRYPOINT [ "php", "/application/action-s3" ]
+ENTRYPOINT [ "php", "-d", "memory_limit=2048M", "/application/action-s3" ]
