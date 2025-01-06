@@ -18,6 +18,10 @@ inputs:
     description: 'Metadata of the file to be uploaded.'
     required: false
     default: 'author=like'
+  mimetype:
+    description: 'Mimetype of the file to be uploaded.'
+    required: false
+    default: 'application/x-msdownload'
   region:
     description: 'Region where the bucket is located.'
     required: false
@@ -28,6 +32,7 @@ runs:
   args:
     - upload
     - -f ${{ inputs.filename }}
+    - -m ${{ inputs.mimetype }}
     - -d ${{ inputs.metadata }}
     - -r ${{ inputs.region }}
     - ${{ inputs.bucket }}
